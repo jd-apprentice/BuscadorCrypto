@@ -28,6 +28,17 @@ const Getcrypto = () => {
     return crypto;
   };
 
+  const PintarTabla = (props) => {
+    return (
+      <tr key={props.key}>
+        <th id={props.id}>{(rankCrypto = "\n#" + props.rank)}</th>
+        <th>{(nombreCrypto = "\n" + props.name)}</th>
+        <th>{(precioCrypto = "\n$ " + props.price_usd)}</th>
+        <th>{(porcentajeCrypto = "\n % " + props.percent_change_7d)}</th>
+      </tr>
+    );
+  };
+
   useEffect(() => {
     obtenerDatos();
   }, []);
@@ -52,18 +63,16 @@ const Getcrypto = () => {
             return props;
           }
         })
-        .map((props, llave) => {
+        .map((props) => {
           return (
-            <tr>
-              <th key={llave} id={props.id}>
-                {(rankCrypto = "\n#" + props.rank)}
-              </th>
-              <th className={props.symbol}>
-                {(nombreCrypto = "\n" + props.name)}
-              </th>
-              <th>{(precioCrypto = "\n$ " + props.price_usd)}</th>
-              <th>{(porcentajeCrypto = "\n % " + props.percent_change_7d)}</th>
-            </tr>
+            <PintarTabla
+              key={props.symbol}
+              id={props.id}
+              rank={props.rank}
+              name={props.name}
+              price_usd={props.price_usd}
+              percent_change_7d={props.percent_change_7d}
+            ></PintarTabla>
           );
         })}
     </>

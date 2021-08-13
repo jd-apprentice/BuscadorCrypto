@@ -3,9 +3,10 @@ import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/esm/Container";
 import Getcryto from "./Fetch";
 import Badge from "react-bootstrap/Badge";
+import React from "react";
 
 // Valores estaticos de la tabla
-export const ValoresTabla = (props) => {
+export const ValoresTabla = () => {
   return (
     <>
       <thead>
