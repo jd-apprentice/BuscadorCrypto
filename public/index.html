@@ -8,7 +8,10 @@
       name="description"
       content="Un buscador de cryptomonedas hecho en React"
     />
-    <link rel="icon" type="image/png" href="../img/btc.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
 
     <title>Buscador Crypto</title>
   </head>
@@ -16,5 +19,23 @@
     style="background-image: url(https://wallpapercave.com/wp/wp3624594.jpg)"
   >
     <div id="root"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBuaG9lyS6QA9AeACLpxs-QFp4Y2_-26Zs",
+        authDomain: "weatherapp-b8a54.firebaseapp.com",
+        projectId: "weatherapp-b8a54",
+        storageBucket: "weatherapp-b8a54.appspot.com",
+        messagingSenderId: "416428620496",
+        appId: "1:416428620496:web:9a2b815652d78989a9fcd5",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </body>
 </html>

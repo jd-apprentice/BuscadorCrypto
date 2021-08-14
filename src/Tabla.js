@@ -2,8 +2,8 @@
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/esm/Container";
 import Getcryto from "./Fetch";
-import Badge from "react-bootstrap/Badge";
 import React from "react";
+import BarraNav from "./Navbar";
 
 // Valores estaticos de la tabla
 export const ValoresTabla = () => {
@@ -14,7 +14,9 @@ export const ValoresTabla = () => {
           <th>Rank</th>
           <th>Nombre</th>
           <th>Precio Actual</th>
-          <th>Porcentaje en 7 dias</th>
+          <th>Market Cap</th>
+          <th>% 24hs</th>
+          <th>% 7 dias</th>
         </tr>
       </thead>
       <tbody>
@@ -28,9 +30,7 @@ export const ValoresTabla = () => {
 const ContenidoTabla = () => {
   return (
     <Container fluid>
-      <Badge className="fs-2 my-3" bg="dark">
-        Buscador de Cryptomonedas
-      </Badge>
+      <BarraNav />
       <Table responsive striped bordered hover variant="dark">
         <ValoresTabla />
       </Table>

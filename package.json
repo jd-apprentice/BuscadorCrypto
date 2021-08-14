@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^5.0.2",
     "dotenv": "^10.0.0",
+    "parcel": "^2.0.0-rc.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.4",
     "react-dom": "^17.0.2",
@@ -18,24 +19,57 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "parcel src/index.html"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "react-app/jest",
+      "eslint:recommended",
+      "plugin:import/errors",
+      "plugin:react/recommended",
+      "plugin:jsx-a11y/recommended",
+      "prettier",
+      "prettier/react"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "rules": {
+      "react/prop-types": 0,
+      "react/react-in-jsx-scope": 0
+    },
+    "plugins": [
+      "react",
+      "import",
+      "jsx-a11y"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2021,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "env": {
+        "es6": true,
+        "browser": true,
+        "node": true
+      },
+      "settings": {
+        "react": {
+          "version": "detect"
+        }
+      },
+      "browserslist": {
+        "production": [
+          ">0.2%",
+          "not dead",
+          "not op_mini all"
+        ],
+        "development": [
+          "last 2 chrome version",
+          "last 2 firefox version",
+          "last 2 safari version"
+        ]
+      }
+    }
   }
 }
