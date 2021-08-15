@@ -9,3 +9,8 @@ Este cuenta con una SearchBar que hace un filter y mapea el elemento que escribi
 
 - Imagen demostrativa del filtro aplicando una busqueda
   <img src="https://media.discordapp.net/attachments/875262629516546089/875262719719243846/unknown.png?width=1157&height=222" alt="BuscadorFiltrado">
+
+## Donde ver la pagina?
+
+La pagina esta alojada en gh-pages, podes verla en este [Link](https://jd-apprentice.github.io/BuscadorCrypto/)
+
