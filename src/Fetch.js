@@ -3,6 +3,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import { useState, useEffect } from "react";
 import AgregarFavoritos from "./AgregarFavoritos";
+import UseIcon from "./icon";
 
 // Arrarys
 
@@ -36,15 +37,18 @@ const Getcrypto = () => {
   }, []);
 
   // Pintar la tabla
-  const PintarTabla = (props, key) => {
+  const PintarTabla = (props) => {
     return (
-      <tr key={props.key}>
+      <tr>
         <th className="d-flex justify-content-between" id={props.id}>
           {(rankCrypto = "\n#" + props.rank)}
           <AgregarFavoritos className="text-center" />
         </th>
-        <th>{(nombreCrypto = "\n" + props.name)}</th>
-        <th>{(precioCrypto = "\n " + props.price_usd)}</th>
+        <th>
+          <UseIcon symbolCurrency={props.symbol} />
+          {(nombreCrypto = "\n" + props.name)}
+        </th>
+        <th>{(precioCrypto = "\n$ " + props.price_usd)}</th>
         <th>{(marketCrypto = "\n$" + props.market_cap_usd)}</th>
         <th>{(porcentajeCrypto24hs = "\n %" + props.percent_change_24h)}</th>
         <th>{(porcentajeCrypto = "\n % " + props.percent_change_7d)}</th>
@@ -72,10 +76,11 @@ const Getcrypto = () => {
             return props;
           }
         })
-        .map((props) => {
+        .map((props, key) => {
           return (
             <PintarTabla
-              key={props.symbol}
+              symbol={props.symbol}
+              key={key}
               id={props.id}
               rank={props.rank}
               name={props.name}
