@@ -958,7 +958,7 @@ const icons = {
 };
 const UseIcon = ({ symbolCurrency }) => {
   const icon = icons[symbolCurrency.toLowerCase()] || icons.usd;
-  return <Icon icon={icon} />;
+  return <Icon className="fs-3" icon={icon} />;
 };
 
 export default UseIcon;
