@@ -1,9 +1,8 @@
 // Imports
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
+
 import { useState, useEffect } from "react";
-import AgregarFavoritos from "./AgregarFavoritos";
-import UseIcon from "./icon";
+import AgregarFavoritos from "./components/AgregarFavoritos";
+import UseIcon from "./components/Icon";
 
 // Arrarys
 
@@ -20,9 +19,8 @@ const enlance = "https://api.coinlore.net/api/tickers/?limit=20";
 
 // Fetch
 
-const Getcrypto = () => {
+const Getcrypto = ({ busqueda }) => {
   const [crypto, setCrypto] = useState([]);
-  const [busqueda, setBusqueda] = useState("");
 
   // Datos almacenados en un array (crypto)
   const obtenerDatos = async () => {
@@ -32,65 +30,98 @@ const Getcrypto = () => {
     return crypto;
   };
 
+  // Obtener datos de la API
   useEffect(() => {
     obtenerDatos();
   }, []);
 
   // Pintar la tabla
-  const PintarTabla = (props) => {
+  const PintarTabla = ({
+    id,
+    rank,
+    symbol,
+    name,
+    price_usd,
+    market_cap_usd,
+    percent_change_7d,
+    percent_change_24h,
+  }) => {
     return (
       <tr>
-        <th className="d-flex justify-content-between" id={props.id}>
-          {(rankCrypto = "\n#" + props.rank)}
-          <AgregarFavoritos className="text-center" />
-        </th>
-        <th>
-          <UseIcon symbolCurrency={props.symbol} />
-          {(nombreCrypto = "\n" + props.name)}
-        </th>
-        <th>{(precioCrypto = "\n$ " + props.price_usd)}</th>
-        <th>{(marketCrypto = "\n$" + props.market_cap_usd)}</th>
-        <th>{(porcentajeCrypto24hs = "\n %" + props.percent_change_24h)}</th>
-        <th>{(porcentajeCrypto = "\n % " + props.percent_change_7d)}</th>
+        <td>
+          <AgregarFavoritos />
+        </td>
+        <td id={id}>{(rankCrypto = "\n#" + rank)}</td>
+        <td>
+          <UseIcon symbolCurrency={symbol} />
+          {(nombreCrypto = "\n" + name)}
+        </td>
+        <td>
+          {
+            (precioCrypto =
+              "\n" +
+              new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+              }).format(price_usd))
+          }
+        </td>
+        <td>
+          {
+            (marketCrypto =
+              "\n" +
+              new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+              }).format(market_cap_usd))
+          }
+        </td>
+        <td>{(porcentajeCrypto24hs = "\n % " + percent_change_24h)}</td>
+        <td>{(porcentajeCrypto = "\n % " + percent_change_7d)}</td>
       </tr>
     );
   };
 
-  // Barra de búsqueda por nombre de las monedas, filtar, mapear y pintar
+  // Filtar, mapear y pintar
   return (
     <>
-      <InputGroup size="sm" className="my-3">
-        <FormControl
-          id="buscadorTexto"
-          onChange={(e) => setBusqueda(e.target.value)}
-          placeholder="Busca tu moneda por nombre"
-        />
-      </InputGroup>
       {crypto
-        .filter((props) => {
+        .filter((moneda) => {
           if (busqueda === "") {
-            return props;
+            return moneda;
           } else if (
-            props.name.toLowerCase().includes(busqueda.toLowerCase())
+            moneda.name.toLowerCase().includes(busqueda.toLowerCase())
           ) {
-            return props;
+            return moneda;
           }
         })
-        .map((props, key) => {
-          return (
-            <PintarTabla
-              symbol={props.symbol}
-              key={key}
-              id={props.id}
-              rank={props.rank}
-              name={props.name}
-              price_usd={props.price_usd}
-              market_cap_usd={props.market_cap_usd}
-              percent_change_24h={props.percent_change_24h}
-              percent_change_7d={props.percent_change_7d}
-            />
-          );
-        })}
+        .map(
+          ({
+            symbol,
+            key,
+            id,
+            rank,
+            name,
+            price_usd,
+            market_cap_usd,
+            percent_change_24h,
+            percent_change_7d,
+          }) => {
+            return (
+              <PintarTabla
+                symbol={symbol}
+                key={key}
+                id={id}
+                rank={rank}
+                name={name}
+                price_usd={price_usd}
+                market_cap_usd={market_cap_usd}
+                percent_change_24h={percent_change_24h}
+                percent_change_7d={percent_change_7d}
+              />
+            );
+          }
+        )}
     </>
   );
 };

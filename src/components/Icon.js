@@ -1,3 +1,5 @@
+// Importar todos los iconos, guardarlos en un objeto
+
 import { Icon } from "@iconify/react";
 
 import xbtc from "@iconify/icons-cryptocurrency/0xbtc";

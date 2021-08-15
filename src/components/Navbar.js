@@ -6,12 +6,16 @@ import {
   NavDropdownItem,
   NavLink,
 } from "react-bootstrap";
+import UseIcon from "./Icon";
 
 const BarraNav = () => {
   return (
     <Navbar className="my-3" bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">Buscador de Cryptomonedas</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <UseIcon symbolCurrency="btc" />
+          <span className="mx-3">Buscador de Cryptomonedas</span>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

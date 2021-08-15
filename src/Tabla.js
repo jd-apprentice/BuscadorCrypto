@@ -3,14 +3,18 @@ import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/esm/Container";
 import Getcryto from "./Fetch";
 import React from "react";
-import BarraNav from "./Navbar";
+import BarraNav from "./components/Navbar";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
+import { useState } from "react";
 
 // Valores estaticos de la tabla
-export const ValoresTabla = () => {
+export const ValoresTabla = ({ busqueda }) => {
   return (
     <>
       <thead>
         <tr>
+          <th></th>
           <th>Rank</th>
           <th>Nombre</th>
           <th>Precio Actual</th>
@@ -20,19 +24,27 @@ export const ValoresTabla = () => {
         </tr>
       </thead>
       <tbody>
-        <Getcryto />
+        <Getcryto busqueda={busqueda} />
       </tbody>
     </>
   );
 };
 
-// Estructura tabla
+// Estructura tabla y barra de busqueda
 const ContenidoTabla = () => {
+  const [busqueda, setBusqueda] = useState("");
   return (
-    <Container fluid>
+    <Container>
       <BarraNav />
+      <InputGroup className="my-3 d-flex">
+        <FormControl
+          id="buscadorTexto"
+          onChange={(e) => setBusqueda(e.target.value)}
+          placeholder="Busca tu moneda por nombre"
+        />
+      </InputGroup>
       <Table responsive striped bordered hover variant="dark">
-        <ValoresTabla />
+        <ValoresTabla busqueda={busqueda} />
       </Table>
     </Container>
   );
