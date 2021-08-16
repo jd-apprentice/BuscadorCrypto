@@ -5,10 +5,12 @@ Un proyecto simple para seguir practicando react, tambien incluyendo una api par
 Este cuenta con una SearchBar que hace un filter y mapea el elemento que escribis en base a su nombre.
 
 - Imagen demostrativa de la pagina
-  <img src="https://media.discordapp.net/attachments/875262629516546089/875262639582904350/unknown.png?width=1159&height=565" alt="BuscadorCrypto">
+  <img src="https://cdn.discordapp.com/attachments/780523152059924552/876641239318024242/unknown.png" alt="BuscadorCrypto">
 
-- Imagen demostrativa del filtro aplicando una busqueda
-  <img src="https://media.discordapp.net/attachments/875262629516546089/875262719719243846/unknown.png?width=1157&height=222" alt="BuscadorFiltrado">
+- Imagen demostrativa del filtro aplicando una busqueda por nombre
+  <img src="https://cdn.discordapp.com/attachments/780523152059924552/876641708329299988/unknown.png" alt="BuscadorNombre">
+- Imagen demostrativa del filtro aplicando una busqueda por simbolo
+  <img src="https://cdn.discordapp.com/attachments/780523152059924552/876641451126161469/unknown.png" alt="BuscadorSimbolo">
 
 ## Donde ver la pagina?
 
