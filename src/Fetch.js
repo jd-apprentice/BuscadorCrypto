@@ -125,9 +125,9 @@ const Getcrypto = ({ busqueda }) => {
             name,
             price_usd,
             market_cap_usd,
+            volume24,
             percent_change_24h,
             percent_change_7d,
-            volume24,
           }) => {
             return (
               <PintarTabla
@@ -138,9 +138,9 @@ const Getcrypto = ({ busqueda }) => {
                 name={name}
                 price_usd={price_usd}
                 market_cap_usd={market_cap_usd}
+                volume24={volume24}
                 percent_change_24h={percent_change_24h}
                 percent_change_7d={percent_change_7d}
-                volume24={volume24}
               />
             );
           }
