@@ -7,20 +7,20 @@ import UseIcon from "./components/Icon";
 // Arrarys
 
 export let nombreCrypto = [];
+export let volumeCrypto = [];
 export let precioCrypto = [];
 export let marketCrypto = [];
 export let porcentajeCrypto24hs = [];
 export let porcentajeCrypto = [];
 export let rankCrypto = [];
 
-// Variables
-
-const enlance = "https://api.coinlore.net/api/tickers/?limit=20";
-
 // Fetch
 
 const Getcrypto = ({ busqueda }) => {
   const [crypto, setCrypto] = useState([]);
+
+  // URL
+  let enlance = `https://api.coinlore.net/api/tickers/?start=0&limit=20`;
 
   // Datos almacenados en un array (crypto)
   const obtenerDatos = async () => {
@@ -35,7 +35,7 @@ const Getcrypto = ({ busqueda }) => {
     obtenerDatos();
   }, []);
 
-  // Pintar la tabla
+  // Pintar tabla
   const PintarTabla = ({
     id,
     rank,
@@ -45,6 +45,7 @@ const Getcrypto = ({ busqueda }) => {
     market_cap_usd,
     percent_change_7d,
     percent_change_24h,
+    volume24,
   }) => {
     return (
       <tr>
@@ -55,6 +56,9 @@ const Getcrypto = ({ busqueda }) => {
         <td>
           <UseIcon symbolCurrency={symbol} />
           {(nombreCrypto = "\n" + name)}
+          <span className="ms-3 text-muted text-uppercase small">
+            {symbol.toLowerCase()}
+          </span>
         </td>
         <td>
           {
@@ -76,13 +80,29 @@ const Getcrypto = ({ busqueda }) => {
               }).format(market_cap_usd))
           }
         </td>
-        <td>{(porcentajeCrypto24hs = "\n % " + percent_change_24h)}</td>
-        <td>{(porcentajeCrypto = "\n % " + percent_change_7d)}</td>
+        <td>
+          {
+            (volumeCrypto =
+              "\n" +
+              new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+              }).format(volume24))
+          }
+        </td>
+        <td
+          className={porcentajeCrypto24hs > 0 ? "text-success" : "text-danger"}
+        >
+          {(porcentajeCrypto24hs = "\n  " + percent_change_24h) + "%"}
+        </td>
+        <td className={porcentajeCrypto > 0 ? "text-success" : "text-danger"}>
+          {(porcentajeCrypto = "\n " + percent_change_7d) + "%"}
+        </td>
       </tr>
     );
   };
 
-  // Filtar, mapear y pintar
+  // Filtar, mapear, pintar y pasar props
   return (
     <>
       {crypto
@@ -90,7 +110,8 @@ const Getcrypto = ({ busqueda }) => {
           if (busqueda === "") {
             return moneda;
           } else if (
-            moneda.name.toLowerCase().includes(busqueda.toLowerCase())
+            moneda.name.toLowerCase().includes(busqueda.toLowerCase()) ||
+            moneda.symbol.toLowerCase().includes(busqueda.toLowerCase())
           ) {
             return moneda;
           }
@@ -106,6 +127,7 @@ const Getcrypto = ({ busqueda }) => {
             market_cap_usd,
             percent_change_24h,
             percent_change_7d,
+            volume24,
           }) => {
             return (
               <PintarTabla
@@ -118,6 +140,7 @@ const Getcrypto = ({ busqueda }) => {
                 market_cap_usd={market_cap_usd}
                 percent_change_24h={percent_change_24h}
                 percent_change_7d={percent_change_7d}
+                volume24={volume24}
               />
             );
           }

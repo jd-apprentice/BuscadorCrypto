@@ -19,8 +19,9 @@ export const ValoresTabla = ({ busqueda }) => {
           <th>Nombre</th>
           <th>Precio Actual</th>
           <th>Market Cap</th>
+          <th>Volumen en 24hs</th>
           <th>% 24hs</th>
-          <th>% 7 dias</th>
+          <th>% 7dias</th>
         </tr>
       </thead>
       <tbody>
@@ -40,7 +41,7 @@ const ContenidoTabla = () => {
         <FormControl
           id="buscadorTexto"
           onChange={(e) => setBusqueda(e.target.value)}
-          placeholder="Busca tu moneda por nombre"
+          placeholder="Busca tu moneda por nombre o simbolo"
         />
       </InputGroup>
       <Table responsive striped bordered hover variant="dark">
