@@ -43,7 +43,7 @@ const ContenidoTabla = () => {
   };
 
   let restarNumero = () => {
-    if (numero == 0) {
+    if (numero === 0) {
       return numero;
     } else {
       setNumero((numero -= 20));

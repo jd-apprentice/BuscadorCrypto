@@ -33,6 +33,7 @@ const Getcrypto = ({ busqueda, numero }) => {
   // Obtener datos de la API
   useEffect(() => {
     obtenerDatos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [numero]);
 
   // Pintar tabla
@@ -110,10 +111,9 @@ const Getcrypto = ({ busqueda, numero }) => {
   return (
     <>
       {crypto
+        // eslint-disable-next-line array-callback-return
         .filter((moneda) => {
-          if (busqueda === "") {
-            return moneda;
-          } else if (
+          if (
             moneda.name.toLowerCase().includes(busqueda.toLowerCase()) ||
             moneda.symbol.toLowerCase().includes(busqueda.toLowerCase())
           ) {
