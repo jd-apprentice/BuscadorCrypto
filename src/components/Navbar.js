@@ -6,15 +6,14 @@ import {
   NavDropdownItem,
   NavLink,
 } from "react-bootstrap";
-import UseIcon from "./Icon";
+import { FormControl } from "react-bootstrap";
 
 const BarraNav = () => {
   return (
     <Navbar className="my-3" bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand href="#home">
-          <UseIcon symbolCurrency="btc" />
-          <span className="mx-3">Buscador de Cryptomonedas</span>
+          <h1 className="fs-3 mt-2">Buscador de Cryptomonedas</h1>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -42,6 +41,10 @@ const BarraNav = () => {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+        <FormControl
+          className="ms-3 w-50"
+          placeholder="Busca tu moneda en la base de datos"
+        />
       </Container>
     </Navbar>
   );

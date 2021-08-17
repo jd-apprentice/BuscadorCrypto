@@ -1,5 +1,4 @@
 // Imports
-
 import { useState, useEffect } from "react";
 import AgregarFavoritos from "./components/AgregarFavoritos";
 import UseIcon from "./components/Icon";
@@ -16,11 +15,12 @@ export let rankCrypto = [];
 
 // Fetch
 
-const Getcrypto = ({ busqueda }) => {
+const Getcrypto = ({ busqueda, numero }) => {
   const [crypto, setCrypto] = useState([]);
 
   // URL
-  let enlance = `https://api.coinlore.net/api/tickers/?start=0&limit=20`;
+
+  let enlance = `https://api.coinlore.net/api/tickers/?start=${numero}&limit=20`;
 
   // Datos almacenados en un array (crypto)
   const obtenerDatos = async () => {
@@ -33,7 +33,7 @@ const Getcrypto = ({ busqueda }) => {
   // Obtener datos de la API
   useEffect(() => {
     obtenerDatos();
-  }, []);
+  }, [numero]);
 
   // Pintar tabla
   const PintarTabla = ({
@@ -48,57 +48,61 @@ const Getcrypto = ({ busqueda }) => {
     volume24,
   }) => {
     return (
-      <tr>
-        <td>
-          <AgregarFavoritos />
-        </td>
-        <td id={id}>{(rankCrypto = "\n#" + rank)}</td>
-        <td>
-          <UseIcon symbolCurrency={symbol} />
-          {(nombreCrypto = "\n" + name)}
-          <span className="ms-3 text-muted text-uppercase small">
-            {symbol.toLowerCase()}
-          </span>
-        </td>
-        <td>
-          {
-            (precioCrypto =
-              "\n" +
-              new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD",
-              }).format(price_usd))
-          }
-        </td>
-        <td>
-          {
-            (marketCrypto =
-              "\n" +
-              new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD",
-              }).format(market_cap_usd))
-          }
-        </td>
-        <td>
-          {
-            (volumeCrypto =
-              "\n" +
-              new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD",
-              }).format(volume24))
-          }
-        </td>
-        <td
-          className={porcentajeCrypto24hs > 0 ? "text-success" : "text-danger"}
-        >
-          {(porcentajeCrypto24hs = "\n  " + percent_change_24h) + "%"}
-        </td>
-        <td className={porcentajeCrypto > 0 ? "text-success" : "text-danger"}>
-          {(porcentajeCrypto = "\n " + percent_change_7d) + "%"}
-        </td>
-      </tr>
+      <>
+        <tr>
+          <td>
+            <AgregarFavoritos />
+          </td>
+          <td id={id}>{(rankCrypto = "\n#" + rank)}</td>
+          <td>
+            <UseIcon symbolCurrency={symbol} />
+            {(nombreCrypto = "\n" + name)}
+            <span className="ms-3 text-muted text-uppercase small">
+              {symbol.toLowerCase()}
+            </span>
+          </td>
+          <td>
+            {
+              (precioCrypto =
+                "\n" +
+                new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                }).format(price_usd))
+            }
+          </td>
+          <td>
+            {
+              (marketCrypto =
+                "\n" +
+                new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                }).format(market_cap_usd))
+            }
+          </td>
+          <td>
+            {
+              (volumeCrypto =
+                "\n" +
+                new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                }).format(volume24))
+            }
+          </td>
+          <td
+            className={
+              porcentajeCrypto24hs > 0 ? "text-success" : "text-danger"
+            }
+          >
+            {(porcentajeCrypto24hs = "\n  " + percent_change_24h) + "%"}
+          </td>
+          <td className={porcentajeCrypto > 0 ? "text-success" : "text-danger"}>
+            {(porcentajeCrypto = "\n " + percent_change_7d) + "%"}
+          </td>
+        </tr>
+      </>
     );
   };
 
@@ -132,7 +136,7 @@ const Getcrypto = ({ busqueda }) => {
             return (
               <PintarTabla
                 symbol={symbol}
-                key={key}
+                key={symbol}
                 id={id}
                 rank={rank}
                 name={name}

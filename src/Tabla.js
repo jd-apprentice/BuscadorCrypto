@@ -7,9 +7,10 @@ import BarraNav from "./components/Navbar";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 
 // Valores estaticos de la tabla
-export const ValoresTabla = ({ busqueda }) => {
+export const ValoresTabla = ({ busqueda, numero }) => {
   return (
     <>
       <thead>
@@ -25,27 +26,49 @@ export const ValoresTabla = ({ busqueda }) => {
         </tr>
       </thead>
       <tbody>
-        <Getcryto busqueda={busqueda} />
+        <Getcryto numero={numero} busqueda={busqueda} />
       </tbody>
     </>
   );
 };
 
-// Estructura tabla y barra de busqueda
+// Funciones
+
 const ContenidoTabla = () => {
   const [busqueda, setBusqueda] = useState("");
+  let [numero, setNumero] = useState(0);
+
+  let aumentarNumero = () => {
+    setNumero((numero += 20));
+  };
+
+  let restarNumero = () => {
+    if (numero == 0) {
+      return numero;
+    } else {
+      setNumero((numero -= 20));
+    }
+  };
+
   return (
+    // Estructura tabla y barra de busqueda
     <Container>
       <BarraNav />
       <InputGroup className="my-3 d-flex">
+        <Button className="mx-2" onClick={restarNumero} variant="dark">
+          <span>Atras</span>
+        </Button>
         <FormControl
           id="buscadorTexto"
           onChange={(e) => setBusqueda(e.target.value)}
-          placeholder="Busca tu moneda por nombre o simbolo"
+          placeholder="Busca tu moneda en los valores de tabla actual, por nombre y simbolo"
         />
+        <Button className="mx-2" onClick={aumentarNumero} variant="dark">
+          <span>Adelante</span>
+        </Button>
       </InputGroup>
       <Table responsive striped bordered hover variant="dark">
-        <ValoresTabla busqueda={busqueda} />
+        <ValoresTabla numero={numero} busqueda={busqueda} />
       </Table>
     </Container>
   );
