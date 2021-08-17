@@ -3,16 +3,6 @@ import { useState, useEffect } from "react";
 import AgregarFavoritos from "./components/AgregarFavoritos";
 import UseIcon from "./components/Icon";
 
-// Arrarys
-
-export let nombreCrypto = [];
-export let volumeCrypto = [];
-export let precioCrypto = [];
-export let marketCrypto = [];
-export let porcentajeCrypto24hs = [];
-export let porcentajeCrypto = [];
-export let rankCrypto = [];
-
 // Fetch
 
 const Getcrypto = ({ busqueda, numero }) => {
@@ -54,53 +44,41 @@ const Getcrypto = ({ busqueda, numero }) => {
           <td>
             <AgregarFavoritos />
           </td>
-          <td id={id}>{(rankCrypto = "\n#" + rank)}</td>
+          <td id={id}>{rank}</td>
           <td>
             <UseIcon symbolCurrency={symbol} />
-            {(nombreCrypto = "\n" + name)}
+            {name}
             <span className="ms-3 text-muted text-uppercase small">
               {symbol.toLowerCase()}
             </span>
           </td>
           <td>
-            {
-              (precioCrypto =
-                "\n" +
-                new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                }).format(price_usd))
-            }
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+            }).format(price_usd)}
           </td>
           <td>
-            {
-              (marketCrypto =
-                "\n" +
-                new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                }).format(market_cap_usd))
-            }
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+            }).format(market_cap_usd)}
           </td>
           <td>
-            {
-              (volumeCrypto =
-                "\n" +
-                new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                }).format(volume24))
-            }
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+            }).format(volume24)}
           </td>
           <td
-            className={
-              porcentajeCrypto24hs > 0 ? "text-success" : "text-danger"
-            }
+            className={percent_change_24h > 0 ? "text-success" : "text-danger"}
           >
-            {(porcentajeCrypto24hs = "\n  " + percent_change_24h) + "%"}
+            {`${percent_change_24h}%`}
           </td>
-          <td className={porcentajeCrypto > 0 ? "text-success" : "text-danger"}>
-            {(porcentajeCrypto = "\n " + percent_change_7d) + "%"}
+          <td
+            className={percent_change_7d > 0 ? "text-success" : "text-danger"}
+          >
+            {`${percent_change_7d}%`}
           </td>
         </tr>
       </>
