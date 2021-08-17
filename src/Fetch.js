@@ -43,9 +43,9 @@ const Getcrypto = ({ busqueda, numero }) => {
     name,
     price_usd,
     market_cap_usd,
+    volume24,
     percent_change_7d,
     percent_change_24h,
-    volume24,
   }) => {
     return (
       <>
