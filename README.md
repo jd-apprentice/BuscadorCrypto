@@ -14,5 +14,5 @@ Este cuenta con una SearchBar que hace un filter y mapea el elemento que escribi
 
 ## Donde ver la pagina?
 
-La pagina esta alojada en gh-pages, podes verla en este [Link](https://buscador-crypto.vercel.app/)
+La pagina esta alojada en vercel, podes verla en este [Link](https://buscador-crypto.vercel.app/)
 
